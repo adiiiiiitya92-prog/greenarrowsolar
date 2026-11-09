@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { nav, site } from "@/lib/site";
@@ -12,6 +12,8 @@ export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 28, restDelta: 0.001 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -39,7 +41,13 @@ export function Navbar() {
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between gap-2">
-        <Logo priority />
+        <div className="flex items-center gap-4">
+          <Logo priority />
+          <p className="hidden border-l border-line pl-4 text-[0.72rem] leading-tight font-medium whitespace-nowrap text-muted 2xl:block">
+            Rooftop Solar For Jabalpur
+            <br />& Madhya Pradesh
+          </p>
+        </div>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
           {nav.map((l) => (
@@ -47,7 +55,7 @@ export function Navbar() {
               key={l.href}
               href={l.href}
               aria-current={isActive(l.href) ? "page" : undefined}
-              className={`relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors hover:text-brand ${
+              className={`relative rounded-full px-3.5 py-2 text-sm font-medium whitespace-nowrap transition-colors hover:text-brand ${
                 isActive(l.href) ? "text-brand" : "text-ink"
               }`}
             >
@@ -64,7 +72,7 @@ export function Navbar() {
             <PhoneIcon /> <span className="hidden xl:inline">{site.phoneDisplay}</span>
             <span className="hidden md:inline xl:hidden">Call</span>
           </a>
-          <Link href="/contact" className="btn btn-primary hidden !min-h-10 !px-5 sm:inline-flex">
+          <Link href="/contact" className="btn btn-accent hidden !min-h-10 !px-5 sm:inline-flex">
             Free Survey
           </Link>
           <ThemeToggle />
@@ -82,6 +90,8 @@ export function Navbar() {
           </button>
         </div>
       </div>
+
+      <motion.div aria-hidden="true" style={{ scaleX: progress }} className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-gradient-to-r from-brand via-[#6aa8ee] to-accent" />
 
       <AnimatePresence>
         {open && (

@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("", 1, "weekly"),
     page("/services", 0.9),
     page("/solar-panel-installation-jabalpur", 0.95, "weekly"),
+    page("/solar-panel-price-jabalpur", 0.9, "weekly"),
     ...cities.filter((c) => c.slug !== "jabalpur").map((c) => page(`/solar-panel-installation/${c.slug}`, 0.7)),
     page("/about", 0.6),
     page("/contact", 0.8),

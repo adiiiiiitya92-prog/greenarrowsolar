@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#fffbf2",
+  themeColor: "#f1f6fc",
 };
 
 // Runs before first paint so there is no flash: saved choice → OS preference.
@@ -71,6 +71,8 @@ const orgLd = {
     postalCode: site.address.postalCode,
     addressCountry: site.address.country,
   },
+  geo: { "@type": "GeoCoordinates", latitude: site.geo.latitude, longitude: site.geo.longitude },
+  ...(site.socialProfiles.length ? { sameAs: site.socialProfiles } : {}),
   areaServed: [
     { "@type": "State", name: "Madhya Pradesh" },
     ...cities.map((c) => ({ "@type": "City", name: c.name })),

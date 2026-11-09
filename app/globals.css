@@ -2,48 +2,52 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Day palette (default) */
+/* Day palette (default) — matches the bento hero: pale sky, navy ink, sky-blue accent, orange CTA */
 :root {
-  --bg: #fffbf2;
-  --bg-alt: #f2f8ec;
+  --bg: #f1f6fc;
+  --bg-alt: #e8f1fb;
   --surface: #ffffff;
-  --ink: #0e2a1b;
-  --muted: #475a4e;
-  --line: #dfe7da;
-  --brand: #1a7a22;
+  --ink: #1b2142;
+  --muted: #4f5b6d;
+  --line: #dbe5f1;
+  --brand: #2f72c4;
   --brand-ink: #ffffff;
-  --brand-soft: #e1f4dc;
-  --accent: #f27a1a;
-  --blue: #1070b0;
-  --accent-text: #c2570a;
-  --sky-top: #7ec8f5;
-  --sky-mid: #cdeafc;
-  --sky-low: #fff1cf;
-  --hill-1: #8fd19e;
-  --hill-2: #4fae6c;
-  --hill-3: #1f8a4c;
+  --brand-soft: #e1edfc;
+  --primary: #1b2142;
+  --primary-ink: #ffffff;
+  --accent: #ff9300;
+  --blue: #2f72c4;
+  --accent-text: #b45f00;
+  --success: #15803d;
+  --sky-top: #c3defa;
+  --sky-mid: #e3f0fd;
+  --sky-low: #f1f6fc;
+  --hill-1: #d3eee4;
+  --shadow: 27 33 66;
 }
 
 /* Night palette */
 .dark {
-  --bg: #060d1a;
-  --bg-alt: #0a1424;
+  --bg: #071021;
+  --bg-alt: #0a172b;
   --surface: #0f1c31;
-  --ink: #e9f3ee;
-  --muted: #a5b8ad;
-  --line: #1d2e47;
-  --brand: #5fd23c;
-  --brand-ink: #062a08;
-  --brand-soft: #10301f;
-  --accent: #ff9a3c;
-  --blue: #4aa3df;
-  --accent-text: #ffa24a;
-  --sky-top: #040a18;
-  --sky-mid: #0b1834;
-  --sky-low: #1b2a54;
-  --hill-1: #17304a;
-  --hill-2: #0f2a3a;
-  --hill-3: #0a2230;
+  --ink: #eef3fb;
+  --muted: #a9b6c8;
+  --line: #1c2c47;
+  --brand: #7ab8f1;
+  --brand-ink: #071021;
+  --brand-soft: #12284a;
+  --primary: #eef3fb;
+  --primary-ink: #071021;
+  --accent: #ff9a1f;
+  --blue: #7ab8f1;
+  --accent-text: #ffad4d;
+  --success: #4ade80;
+  --sky-top: #12305a;
+  --sky-mid: #0d203d;
+  --sky-low: #071021;
+  --hill-1: #0d2b2a;
+  --shadow: 0 0 0;
   color-scheme: dark;
 }
 
@@ -60,8 +64,19 @@
   --color-accent: var(--accent);
   --color-blue: var(--blue);
   --color-accent-text: var(--accent-text);
+  --color-primary: var(--primary);
+  --color-primary-ink: var(--primary-ink);
+  --color-success: var(--success);
   --font-sans: var(--font-body), var(--font-deva), system-ui, sans-serif;
-  --font-display: var(--font-heading), var(--font-deva), Georgia, serif;
+  /* Headings use the same geometric sans as the hero; the serif is kept only for the logo wordmark. */
+  --font-display: var(--font-body), var(--font-deva), system-ui, sans-serif;
+  --font-logo: var(--font-heading), Georgia, serif;
+}
+
+@layer base {
+  h1, h2 { font-weight: 700; }
+  h3, h4 { font-weight: 600; }
+  .font-display { letter-spacing: -0.03em; }
 }
 
 html {
@@ -84,23 +99,39 @@ img, svg { max-width: 100%; }
 @layer components {
 .card {
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 1.25rem;
-  transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  border-radius: 1.35rem;
+  box-shadow: 0 22px 44px -34px rgb(var(--shadow) / .45);
+  transition: background-color .5s ease, border-color .4s ease, transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s cubic-bezier(.22,1,.36,1);
 }
-.card-hover:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px color-mix(in srgb, var(--brand) 55%, transparent); }
+.card-hover:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--brand) 35%, var(--line));
+  box-shadow: 0 30px 50px -30px color-mix(in srgb, var(--brand) 55%, transparent);
+}
 
 .btn {
+  position: relative; overflow: hidden; isolation: isolate;
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-  min-height: 2.75rem; padding: .65rem 1.4rem; border-radius: 999px;
+  min-height: 2.75rem; padding: .7rem 1.4rem; border-radius: .8rem;
   font-weight: 600; font-size: .95rem; cursor: pointer;
-  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+  transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, background-color .2s ease, border-color .2s ease;
 }
-.btn:hover { transform: translateY(-1px); }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(.98); }
 .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
-.btn-primary { background: var(--brand); color: var(--brand-ink); box-shadow: 0 10px 24px -12px var(--brand); }
-.btn-ghost { border: 1.5px solid var(--line); color: var(--ink); background: color-mix(in srgb, var(--surface) 70%, transparent); }
-.btn-ghost:hover { border-color: var(--brand); }
+/* light sweep across filled buttons on hover */
+.btn-primary::after, .btn-accent::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / .28) 50%, transparent 70%);
+  transform: translateX(-120%); transition: transform .8s cubic-bezier(.22,1,.36,1);
+}
+.btn-primary:hover::after, .btn-accent:hover::after { transform: translateX(120%); }
+.btn-primary { background: var(--primary); color: var(--primary-ink); box-shadow: 0 14px 26px -16px rgb(var(--shadow) / .9); }
+.btn-primary:hover { box-shadow: 0 20px 32px -16px rgb(var(--shadow) / .9); }
+.btn-accent { background: var(--accent); color: #fff; box-shadow: 0 12px 24px -12px var(--accent); }
+.btn-ghost { border: 1.5px solid var(--line); color: var(--ink); background: color-mix(in srgb, var(--surface) 75%, transparent); backdrop-filter: blur(8px); }
+.btn-ghost:hover { border-color: var(--brand); color: var(--brand); }
 
 .field {
   width: 100%; min-height: 2.75rem; padding: .6rem .9rem; border-radius: .8rem;
@@ -111,7 +142,28 @@ img, svg { max-width: 100%; }
 
 .link { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
 .chip { display: inline-block; padding: .2rem .7rem; border-radius: 999px; background: var(--brand-soft); color: var(--brand); font-size: .8rem; font-weight: 600; }
-.eyebrow { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--brand); }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .35rem .85rem .35rem .6rem; border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 80%, transparent); border: 1px solid var(--line);
+  box-shadow: 0 10px 20px -16px rgb(var(--shadow) / .5);
+  font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--brand);
+}
+.eyebrow::before {
+  content: ""; width: .55rem; height: .55rem; border-radius: 999px;
+  background: radial-gradient(circle at 35% 35%, #fff6a8, #ffd21f 55%, #f59e0b);
+  box-shadow: 0 0 0 3px rgb(255 210 31 / .25);
+  animation: eyebrow-pulse 2.4s ease-in-out infinite;
+}
+@keyframes eyebrow-pulse { 50% { box-shadow: 0 0 0 6px rgb(255 210 31 / 0); } }
+
+/* soft pastel sky for alternate sections, like the hero backdrop */
+.section-sky {
+  background:
+    radial-gradient(60% 50% at 90% 0%, color-mix(in srgb, var(--sky-top) 55%, transparent), transparent 70%),
+    radial-gradient(50% 45% at 0% 100%, color-mix(in srgb, var(--hill-1) 60%, transparent), transparent 70%),
+    var(--bg-alt);
+}
 
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
@@ -131,6 +183,32 @@ img, svg { max-width: 100%; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .glint { animation: glint 5s ease-in-out infinite; }
 @keyframes glint { 0%, 60%, 100% { opacity: 0; transform: translateX(-100%); } 80% { opacity: .6; transform: translateX(100%); } }
+
+/* ---------- Bento hero ---------- */
+:root {
+  --hero-bg: var(--bg);
+  --hero-blob-a: #b9dcfb;
+  --hero-blob-b: #d6f1ea;
+  --hero-blob-c: #c7e1fb;
+  --hero-ink: var(--ink);
+  --hero-muted: var(--muted);
+  --hero-solar-a: #9ccdf7;
+  --hero-solar-b: #6aa8ee;
+  --hero-card: var(--surface);
+}
+.dark {
+  --hero-blob-a: #12305a;
+  --hero-blob-b: #0d2b2a;
+  --hero-blob-c: #10264a;
+  --hero-solar-a: #a9d4fa;
+}
+/* gradient word, same treatment as "Solar" in the hero */
+.text-sky { background: linear-gradient(180deg, var(--hero-solar-a), var(--hero-solar-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-blob { animation: hero-drift 18s ease-in-out infinite alternate; will-change: transform; }
+@keyframes hero-drift { to { transform: translate3d(6%, 4%, 0) scale(1.08); } }
+.hero-float { animation: hero-float 6s ease-in-out infinite; }
+@keyframes hero-float { 50% { transform: translateY(-8px); } }
+.hero-spin { animation: spin 14s linear infinite; transform-box: view-box; }
 
 .marquee { display: flex; width: max-content; animation: marquee 32s linear infinite; }
 @keyframes marquee { to { transform: translateX(-50%); } }

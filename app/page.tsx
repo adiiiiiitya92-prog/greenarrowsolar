@@ -6,9 +6,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { faqs } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: { absolute: "Solar Panel Installation in Jabalpur & Madhya Pradesh | Green Arrow Solar" },
+  title: { absolute: "Solar Panel Installation Jabalpur | Green Arrow Solar" },
   description:
-    "Top-rated rooftop solar installer in Jabalpur & MP. Free site survey, PM Surya Ghar subsidy up to ₹78,000, net metering and 25-year panels. Call Green Arrow Solar today.",
+    "Green Arrow Solar — Jabalpur's trusted solar installer. Get rooftop solar with ₹78,000 subsidy. Free site survey. Call now for best solar panel prices.",
   alternates: { canonical: "/" },
 };
 
@@ -26,11 +26,11 @@ export default function Home() {
       <TrustStrip />
 
       <section className="section container-x">
-        <SectionHead eyebrow="What we do" title="Solar for every roof, farm and business" text="From a 1 kW home system to a factory rooftop plant, designed and installed by one accountable local team." />
+        <SectionHead eyebrow="What we do" title="Rooftop solar for every home, farm and business in Jabalpur" text="From a 1 kW home system to a factory rooftop plant, designed and installed by one accountable local team." />
         <ServicesGrid />
       </section>
 
-      <section className="section bg-bg-alt">
+      <section className="section section-sky">
         <div className="container-x">
           <SectionHead eyebrow="Why go solar in MP" title="The numbers speak for themselves" />
           <Facts />
@@ -42,9 +42,9 @@ export default function Home() {
         <HowItWorks />
       </section>
 
-      <section className="section bg-bg-alt">
+      <section className="section section-sky">
         <div className="container-x">
-          <SectionHead eyebrow="Savings calculator" title="See how much you could save" text="Move the slider to match your bill." />
+          <SectionHead eyebrow="Savings calculator" title="Solar subsidy & savings calculator for MP" text="Move the slider to match your bill. See your system size, PM Surya Ghar subsidy, payback and EMI." />
           <Calculator />
         </div>
       </section>
@@ -53,7 +53,7 @@ export default function Home() {
         <FounderCard />
       </section>
 
-      <section className="section bg-bg-alt">
+      <section className="section section-sky">
         <div className="container-x">
           <SectionHead eyebrow="Service areas" title="Solar across Jabalpur & Madhya Pradesh" text="Based in Jabalpur, serving homes, businesses and farms across the state." />
           <Areas />
@@ -61,7 +61,7 @@ export default function Home() {
       </section>
 
       <section className="section container-x">
-        <SectionHead eyebrow="FAQ" title="Questions we hear every day" />
+        <SectionHead eyebrow="FAQ" title="Solar questions from Jabalpur homeowners" />
         <Faq />
       </section>
 

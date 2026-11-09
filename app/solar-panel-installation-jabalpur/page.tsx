@@ -56,7 +56,7 @@ export default function JabalpurPage() {
         </Reveal>
       </section>
 
-      <section className="section bg-bg-alt"><div className="container-x"><Calculator /></div></section>
+      <section className="section section-sky"><div className="container-x"><Calculator /></div></section>
 
       <section className="section container-x">
         <SectionHead eyebrow="FAQ" title="Solar in Jabalpur — your questions" />
@@ -64,7 +64,7 @@ export default function JabalpurPage() {
         <JsonLd data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }} />
       </section>
 
-      <section className="section bg-bg-alt">
+      <section className="section section-sky">
         <div className="container-x">
           <SectionHead eyebrow="Beyond Jabalpur" title="We also serve nearby districts" />
           <Areas />

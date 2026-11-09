@@ -46,7 +46,7 @@ export default async function CityPage({ params }: Props) {
         <SectionHead eyebrow="Services" title={`What we install in ${c.name}`} />
         <ServicesGrid />
       </section>
-      <section className="section bg-bg-alt">
+      <section className="section section-sky">
         <div className="container-x"><SectionHead eyebrow="More locations" title="Other areas we serve" /><Areas /></div>
       </section>
       <section className="container-x section"><CtaBand /></section>
