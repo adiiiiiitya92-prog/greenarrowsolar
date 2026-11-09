@@ -44,21 +44,40 @@ export function ContactForm() {
       return;
     }
     setErrors({});
+    const form = e.currentTarget;
+    // Bots: honeypot filled or submitted within 3s of opening → pretend success, store nothing.
+    if (payload.website || Date.now() - openedAt < 3000) {
+      setStatus({ kind: "ok" });
+      form.reset();
+      return;
+    }
     setStatus({ kind: "sending" });
     try {
-      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok) {
-        setStatus({ kind: "ok" });
-        (e.target as HTMLFormElement).reset();
-        const gtag = (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag;
-        gtag?.("event", "generate_lead", { method: "contact_form" });
-      } else {
-        if (data.fields) setErrors(data.fields);
-        setStatus({ kind: "error", msg: res.status === 429 ? "Too many attempts. Please wait a few minutes or call us." : (data.error ?? "Something went wrong. Please call us instead.") });
-      }
-    } catch {
-      setStatus({ kind: "error", msg: "Network error. Please check your connection or call us." });
+      const d = parsed.data;
+      const [{ db }, { addDoc, collection, serverTimestamp }] = await Promise.all([import("@/lib/firebase"), import("firebase/firestore")]);
+      await addDoc(collection(db(), "leads"), {
+        name: d.name,
+        phone: d.phone,
+        email: d.email,
+        city: d.city,
+        interest: d.interest,
+        monthlyBill: d.monthlyBill ? Number(d.monthlyBill) : null,
+        message: d.message,
+        page: window.location.pathname.slice(0, 200),
+        status: "new",
+        note: "",
+        createdAt: serverTimestamp(),
+      });
+      setStatus({ kind: "ok" });
+      form.reset();
+      const gtag = (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag;
+      gtag?.("event", "generate_lead", { method: "contact_form" });
+    } catch (err) {
+      console.error(err);
+      setStatus({
+        kind: "error",
+        msg: navigator.onLine ? "Something went wrong. Please call or WhatsApp us instead." : "You are offline. Please check your connection or call us.",
+      });
     }
   }
 

@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { JsonLd } from "@/components/JsonLd";
+import { PwaRegister } from "@/components/PwaRegister";
 import { site, cities } from "@/lib/site";
 
 const heading = Fraunces({ variable: "--font-heading", subsets: ["latin"], display: "swap" });
@@ -39,6 +40,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
   formatDetection: { telephone: true, email: true },
+  appleWebApp: { capable: true, title: "Green Arrow", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {
@@ -95,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <CookieConsent />
+        <PwaRegister />
       </body>
     </html>
   );

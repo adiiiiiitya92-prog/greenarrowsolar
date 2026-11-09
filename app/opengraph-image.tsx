@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+export const dynamic = "force-static";
 export const alt = "Green Arrow Solar – Rooftop solar in Jabalpur & Madhya Pradesh";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

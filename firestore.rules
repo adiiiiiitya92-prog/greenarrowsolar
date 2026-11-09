@@ -1,0 +1,55 @@
+rules_version = '2';
+
+// Deploy: Firebase Console → Firestore Database → Rules → paste this file → Publish.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function staffRole() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        ? get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role
+        : null;
+    }
+    function isStaff() { return staffRole() in ['admin', 'viewer']; }
+    function isAdmin() { return staffRole() == 'admin'; }
+
+    function str(v, min, max) { return v is string && v.size() >= min && v.size() <= max; }
+
+    function validNewLead(d) {
+      return d.keys().hasOnly(['name', 'phone', 'email', 'city', 'interest', 'monthlyBill', 'message', 'page', 'status', 'note', 'createdAt'])
+        && d.keys().hasAll(['name', 'phone', 'interest', 'status', 'createdAt'])
+        && str(d.name, 2, 80)
+        && d.phone is string && d.phone.matches('^[6-9][0-9]{9}$')
+        && (!('email' in d) || d.email == '' || (str(d.email, 3, 120) && d.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')))
+        && (!('city' in d) || str(d.city, 0, 60))
+        && d.interest in ['residential', 'commercial', 'agriculture', 'offgrid', 'other']
+        && (!('monthlyBill' in d) || d.monthlyBill == null || (d.monthlyBill is int && d.monthlyBill >= 0 && d.monthlyBill <= 999999))
+        && (!('message' in d) || str(d.message, 0, 1000))
+        && (!('page' in d) || str(d.page, 0, 200))
+        && (!('note' in d) || d.note == '')
+        && d.status == 'new'
+        && d.createdAt == request.time;
+    }
+
+    // Public website visitors may only CREATE a lead. They can never read, edit or list leads.
+    match /leads/{leadId} {
+      allow create: if validNewLead(request.resource.data);
+      allow read: if isStaff();
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'note'])
+        && request.resource.data.status in ['new', 'contacted', 'closed']
+        && str(request.resource.data.get('note', ''), 0, 2000);
+      allow delete: if isAdmin();
+    }
+
+    // Staff list is managed only from the Firebase Console. A signed-in user may read their own role.
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
