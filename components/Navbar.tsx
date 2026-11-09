@@ -41,21 +41,15 @@ export function Navbar() {
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between gap-2">
-        <div className="flex items-center gap-4">
-          <Logo priority />
-          <p className="hidden border-l border-line pl-4 text-[0.72rem] leading-tight font-medium whitespace-nowrap text-muted 2xl:block">
-            Rooftop Solar For Jabalpur
-            <br />& Madhya Pradesh
-          </p>
-        </div>
+        <Logo priority />
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-0.5 xl:flex">
           {nav.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               aria-current={isActive(l.href) ? "page" : undefined}
-              className={`relative rounded-full px-3.5 py-2 text-sm font-medium whitespace-nowrap transition-colors hover:text-brand ${
+              className={`relative rounded-full px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors hover:text-brand ${
                 isActive(l.href) ? "text-brand" : "text-ink"
               }`}
             >
@@ -67,18 +61,17 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          <a href={`tel:${site.phone}`} className="btn btn-ghost !min-h-10 !px-2.5 max-[400px]:hidden md:!px-4" aria-label={`Call ${site.phoneDisplay}`}>
-            <PhoneIcon /> <span className="hidden xl:inline">{site.phoneDisplay}</span>
-            <span className="hidden md:inline xl:hidden">Call</span>
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <a href={`tel:${site.phone}`} className="btn btn-ghost !min-h-10 !px-2.5 whitespace-nowrap max-[400px]:hidden md:!px-4" aria-label={`Call ${site.phoneDisplay}`}>
+            <PhoneIcon /> <span className="hidden md:inline">{site.phoneDisplay}</span>
           </a>
-          <Link href="/contact" className="btn btn-accent hidden !min-h-10 !px-5 sm:inline-flex">
+          <Link href="/contact" className="btn btn-accent hidden !min-h-10 !px-5 whitespace-nowrap sm:inline-flex">
             Free Survey
           </Link>
           <ThemeToggle />
           <button
             type="button"
-            className="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-line bg-surface lg:hidden"
+            className="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-line bg-surface xl:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -101,7 +94,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "calc(100dvh - 4rem)" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-y-auto bg-bg lg:hidden"
+            className="overflow-y-auto bg-bg xl:hidden"
           >
             <nav aria-label="Mobile" className="container-x grid gap-1 py-6">
               {nav.map((l, i) => (
