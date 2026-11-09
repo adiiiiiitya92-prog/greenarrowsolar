@@ -1,6 +1,7 @@
 # Green Arrow Solar — greenarrowsolar.com
 
-Next.js (App Router, **static export**) + Tailwind CSS v4 + Framer Motion + **Firebase** (Firestore + Auth). Installable PWA.
+Next.js (App Router, **static export**) + Tailwind CSS v4 + Framer Motion + **Firebase** (Firestore + Auth).
+The admin panel is an installable PWA ("Green Arrow Admin", opens straight to `/admin`); install it from `/admin` → browser menu → *Install app* / *Add to Home screen*. The public site itself is not installable.
 No backend server: `npm run build` produces a static `out/` folder that runs on Netlify or Cloudflare Pages.
 
 - Contact form → writes a lead straight into Firestore `leads` (validated by `firestore.rules`).

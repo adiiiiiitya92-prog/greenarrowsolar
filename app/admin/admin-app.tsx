@@ -80,7 +80,7 @@ export function AdminApp() {
 }
 
 function Shell({ children }: { children: React.ReactNode }) {
-  return <div className="container-x py-20">{children}</div>;
+  return <div className="container-x py-12">{children}</div>;
 }
 
 function LoginForm() {
@@ -198,7 +198,7 @@ function Dashboard({ user, role }: { user: User; role: Role }) {
   }, [leads, filter, q]);
 
   return (
-    <div className="container-x py-12">
+    <div className="container-x pt-[max(1.5rem,env(safe-area-inset-top))] pb-12">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="font-display text-3xl">Leads</h1>

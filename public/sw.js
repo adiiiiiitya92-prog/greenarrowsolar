@@ -1,5 +1,5 @@
 // Bump VERSION to force every installed app to drop old caches.
-const VERSION = "v1";
+const VERSION = "v2";
 const STATIC = `static-${VERSION}`;
 const PAGES = `pages-${VERSION}`;
 const OFFLINE = "/offline";
@@ -8,7 +8,7 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
       .open(PAGES)
-      .then((c) => c.addAll([OFFLINE, "/", "/contact", "/manifest.webmanifest", "/icons/icon-192.png"]))
+      .then((c) => c.addAll([OFFLINE, "/admin", "/", "/contact", "/admin.webmanifest", "/icons/icon-192.png"]))
       .then(() => self.skipWaiting()),
   );
 });

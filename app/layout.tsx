@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { JsonLd } from "@/components/JsonLd";
 import { PwaRegister } from "@/components/PwaRegister";
+import { SiteChrome } from "@/components/SiteChrome";
 import { site, cities } from "@/lib/site";
 
 const heading = Fraunces({ variable: "--font-heading", subsets: ["latin"], display: "swap" });
@@ -40,7 +41,6 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
   formatDetection: { telephone: true, email: true },
-  appleWebApp: { capable: true, title: "Green Arrow", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {
@@ -93,10 +93,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-brand-ink">
           Skip to content
         </a>
-        <Navbar />
+        <SiteChrome>
+          <Navbar />
+        </SiteChrome>
         <main id="main">{children}</main>
-        <Footer />
-        <CookieConsent />
+        <SiteChrome>
+          <Footer />
+          <CookieConsent />
+        </SiteChrome>
         <PwaRegister />
       </body>
     </html>

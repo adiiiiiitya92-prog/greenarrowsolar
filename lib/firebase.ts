@@ -1,5 +1,5 @@
 import { getApp, getApps, initializeApp, type FirebaseApp } from "firebase/app";
-import { getAuth, type Auth } from "firebase/auth";
+import { browserLocalPersistence, getAuth, indexedDBLocalPersistence, initializeAuth, type Auth } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
 
 // NEXT_PUBLIC_* values must be referenced literally so Next can inline them at build time.
@@ -19,7 +19,18 @@ function app(): FirebaseApp {
   return getApps().length ? getApp() : initializeApp(config);
 }
 
-export const auth = (): Auth => getAuth(app());
+let authInstance: Auth | undefined;
+
+// Stay signed in across app restarts until an explicit sign-out (or password change).
+export function auth(): Auth {
+  if (authInstance) return authInstance;
+  try {
+    authInstance = initializeAuth(app(), { persistence: [indexedDBLocalPersistence, browserLocalPersistence] });
+  } catch {
+    authInstance = getAuth(app());
+  }
+  return authInstance;
+}
 export const db = (): Firestore => getFirestore(app());
 
 export type LeadStatus = "new" | "contacted" | "closed";
