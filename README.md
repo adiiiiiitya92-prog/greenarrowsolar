@@ -57,7 +57,7 @@ Env vars are baked in at build time: after changing one, trigger a new deploy.
 
 ## 4. Before going live
 
-1. Real phone / email / address in `lib/site.ts` or `NEXT_PUBLIC_*` env vars; set `NEXT_PUBLIC_SITE_URL` to the final domain.
+1. Phone / WhatsApp / address live in `lib/site.ts`; email via `NEXT_PUBLIC_EMAIL`; set `NEXT_PUBLIC_SITE_URL` to the final domain.
 2. Firebase → Authentication → Settings → **Authorized domains** → add `greenarrowsolar.com`, `www.greenarrowsolar.com` and the `*.pages.dev` / `*.netlify.app` URL.
 3. Optional hardening: Google Cloud Console → APIs & Services → Credentials → the Browser key → *Website restrictions* → your domains.
 4. Submit `/sitemap.xml` in Google Search Console.

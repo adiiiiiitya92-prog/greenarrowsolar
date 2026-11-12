@@ -18,7 +18,7 @@ export default async function OgImage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={src} width={150} height={100} alt="" />
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "center", marginLeft: 22 }}>
-            <div style={{ display: "flex", fontSize: 64, fontWeight: 800 }}><span style={{ color: "#1a7a22" }}>Green Arrow</span><span style={{ color: "#f27a1a", marginLeft: 16 }}>Solar</span></div>
+            <div style={{ display: "flex", fontSize: 64, fontWeight: 800 }}><span style={{ color: "#15803d" }}>Green Arrow Solar</span></div>
             <div style={{ display: "flex", fontSize: 20, fontWeight: 700, letterSpacing: 6, color: "#55606f" }}>PVT. LTD.</div>
           </div>
         </div>

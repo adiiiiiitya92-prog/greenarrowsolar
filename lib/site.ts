@@ -7,9 +7,9 @@ export const site = {
   tagline: "Rooftop solar for Jabalpur & Madhya Pradesh",
   description:
     "Green Arrow Solar designs and installs rooftop solar systems for homes, businesses and farms in Jabalpur and across Madhya Pradesh. PM Surya Ghar subsidy support, net metering and 25-year panel life.",
-  phone: process.env.NEXT_PUBLIC_PHONE ?? "+919876543210",
-  phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+91 98765 43210",
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? "919876543210",
+  phone: "+917057433822",
+  phoneDisplay: "+91 70574 33822",
+  whatsapp: "917057433822",
   email: process.env.NEXT_PUBLIC_EMAIL ?? "info@greenarrowsolar.com",
   address: {
     street: "Napier Town",

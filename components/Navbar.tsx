@@ -43,14 +43,17 @@ export function Navbar() {
       <div className="container-x flex h-16 items-center justify-between gap-2">
         <Logo priority />
 
-        <nav aria-label="Primary" className="hidden items-center gap-0.5 xl:flex">
+        <nav
+          aria-label="Primary"
+          className="hidden items-center gap-0.5 rounded-full border border-line bg-surface/60 p-1 shadow-[0_10px_30px_-22px_rgba(27,33,66,.6)] backdrop-blur-md xl:flex"
+        >
           {nav.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               aria-current={isActive(l.href) ? "page" : undefined}
-              className={`relative rounded-full px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors hover:text-brand ${
-                isActive(l.href) ? "text-brand" : "text-ink"
+              className={`relative rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-colors hover:text-brand ${
+                isActive(l.href) ? "text-brand" : "text-ink hover:bg-brand-soft/50"
               }`}
             >
               {l.label}
@@ -62,8 +65,11 @@ export function Navbar() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <a href={`tel:${site.phone}`} className="btn btn-ghost !min-h-10 !px-2.5 whitespace-nowrap max-[400px]:hidden md:!px-4" aria-label={`Call ${site.phoneDisplay}`}>
-            <PhoneIcon /> <span className="hidden md:inline">{site.phoneDisplay}</span>
+          <a href={`tel:${site.phone}`} className="btn btn-ghost !min-h-10 !gap-2 !py-1 !pr-2.5 !pl-1 whitespace-nowrap max-[400px]:hidden md:!pr-4" aria-label={`Call ${site.phoneDisplay}`}>
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-[#15803d] text-white dark:bg-[#22a83a]">
+              <PhoneIcon />
+            </span>
+            <span className="hidden font-semibold md:inline">{site.phoneDisplay}</span>
           </a>
           <Link href="/contact" className="btn btn-accent hidden !min-h-10 !px-5 whitespace-nowrap sm:inline-flex">
             Free Survey
