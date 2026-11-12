@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { Areas, Calculator, CtaBand, Facts, Faq, FounderCard, HowItWorks, ServicesGrid, TrustStrip } from "@/components/Sections";
 import { SectionHead } from "@/components/SectionHead";
 import { JsonLd } from "@/components/JsonLd";
+import { ProjectsSlider } from "@/components/Projects";
 import { faqs } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -63,6 +64,12 @@ export default function Home() {
       <section className="section container-x">
         <SectionHead eyebrow="FAQ" title="Solar questions from Jabalpur homeowners" />
         <Faq />
+      </section>
+
+      <section className="section section-sky">
+        <div className="container-x">
+          <ProjectsSlider />
+        </div>
       </section>
 
       <section className="container-x pb-20">

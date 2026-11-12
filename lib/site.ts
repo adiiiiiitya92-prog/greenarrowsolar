@@ -115,6 +115,14 @@ export const steps = [
   { title: "Monitor & maintain", text: "Track generation on your phone. We are one call away for cleaning and service." },
 ];
 
+// Completed installations shown in the homepage slider (photos in public/projects/).
+// `focus` is the CSS object-position that keeps the people in frame when the photo is cropped.
+export const projects = [
+  { name: "Agrawal", place: "Akot", kw: 8, photo: "/projects/agrawal-akot.webp", focus: "40% 50%" },
+  { name: "Jaiswal", place: "Friends Colony", kw: 6, photo: "/projects/jaiswal-friends-colony.webp", focus: "62% 50%" },
+  { name: "Ajanti Dal", place: "Hinganghat", kw: 60, photo: "/projects/ajanti-dal-hinganghat.webp", focus: "45% 50%" },
+];
+
 export const faqs = [
   {
     q: "How much subsidy can I get for rooftop solar in Madhya Pradesh?",
