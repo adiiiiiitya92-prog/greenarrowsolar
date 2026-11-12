@@ -57,6 +57,7 @@ const orgLd = {
   "@type": "LocalBusiness",
   "@id": `${site.url}/#business`,
   name: site.name,
+  legalName: site.legalName,
   url: site.url,
   description: site.description,
   image: `${site.url}/opengraph-image`,

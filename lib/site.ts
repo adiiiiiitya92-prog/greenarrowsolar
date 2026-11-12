@@ -2,6 +2,7 @@
 // TODO(owner): replace contact values with real ones (or set the NEXT_PUBLIC_* env vars).
 export const site = {
   name: "Green Arrow Solar",
+  legalName: "Green Arrow Solar Pvt. Ltd.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://greenarrowsolar.com",
   tagline: "Rooftop solar for Jabalpur & Madhya Pradesh",
   description:

@@ -16,8 +16,11 @@ export default async function OgImage() {
         <div style={{ position: "absolute", top: 60, right: 90, width: 190, height: 190, borderRadius: 999, background: "#f5a623", boxShadow: "0 0 90px 30px rgba(245,166,35,.6)" }} />
         <div style={{ display: "flex", background: "#fff", padding: "22px 34px", borderRadius: 28, alignSelf: "flex-start", boxShadow: "0 20px 50px -20px rgba(0,0,0,.3)" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} width={118} height={100} alt="" />
-          <div style={{ display: "flex", fontSize: 64, fontWeight: 800, marginLeft: 22, alignItems: "center" }}><span style={{ color: "#1a7a22" }}>Green Arrow</span><span style={{ color: "#f27a1a", marginLeft: 16 }}>Solar</span></div>
+          <img src={src} width={150} height={100} alt="" />
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "center", marginLeft: 22 }}>
+            <div style={{ display: "flex", fontSize: 64, fontWeight: 800 }}><span style={{ color: "#1a7a22" }}>Green Arrow</span><span style={{ color: "#f27a1a", marginLeft: 16 }}>Solar</span></div>
+            <div style={{ display: "flex", fontSize: 20, fontWeight: 700, letterSpacing: 6, color: "#55606f" }}>PVT. LTD.</div>
+          </div>
         </div>
         <div style={{ fontSize: 30, fontWeight: 700, color: "#1a7a22", letterSpacing: 4, marginTop: 44 }}>JABALPUR · MADHYA PRADESH</div>
         <div style={{ fontSize: 60, fontWeight: 800, lineHeight: 1.1, marginTop: 14, maxWidth: 900 }}>Rooftop solar with subsidy &amp; net-metering support</div>

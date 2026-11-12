@@ -50,7 +50,7 @@ export function Footer() {
       </div>
       <div className="border-t border-line">
         <div className="container-x text-muted flex flex-col items-start justify-between gap-3 py-5 text-sm sm:flex-row sm:items-center">
-          <p>© <CopyrightYear /> {site.name}. All rights reserved. · Designed &amp; developed by <a className="hover:text-brand" href="https://setusolution.com" target="_blank" rel="noopener noreferrer">Setu Solution</a></p>
+          <p>© <CopyrightYear /> {site.legalName} All rights reserved. · Designed &amp; developed by <a className="hover:text-brand" href="https://setusolution.com" target="_blank" rel="noopener noreferrer">Setu Solution</a></p>
           <ul className="flex flex-wrap gap-x-5 gap-y-1">
             <li><Link className="hover:text-brand" href="/privacy-policy">Privacy Policy</Link></li>
             <li><Link className="hover:text-brand" href="/terms">Terms &amp; Conditions</Link></li>

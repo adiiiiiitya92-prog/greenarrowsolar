@@ -1,5 +1,5 @@
 // Bump VERSION to force every installed app to drop old caches.
-const VERSION = "v2";
+const VERSION = "v3";
 const STATIC = `static-${VERSION}`;
 const PAGES = `pages-${VERSION}`;
 const OFFLINE = "/offline";
